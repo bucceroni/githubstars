@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+// MaterialUI
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -15,12 +16,12 @@ const styles = theme => ({
 });
 
 const Title = props => (
-  <div>
-    <span className={props.classes.title}>
-      Github
-      <span className={props.classes.titleColor}>Stars</span>
-    </span>
-  </div>
+  <React.Fragment>
+      <span className={props.classes.title}>
+        Github
+        <span className={props.classes.titleColor}>Stars</span>
+      </span>
+  </React.Fragment>
 );
 
 Title.propTypes = {

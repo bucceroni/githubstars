@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-//MaterialUI
-import { Grid } from "@material-ui/core";
 // Components
 import Title from "../components/Title";
 import Search from "../components/Search";
@@ -16,22 +14,22 @@ class SearchPage extends Component {
     });
   };
 
+  handleSearch = () => {
+    const { search } = this.state;
+    this.props.history.push(`/result/${search}`);
+  };
+
   render() {
     const { search } = this.state;
     return (
-      <div style={{ paddingTop: "300px" }}>
-        <Grid container direction="row" alignItems="center" justify="center">
-          <Title />
-        </Grid>
-        <Grid container direction="row" alignItems="center" justify="center">
-          <Grid item xs={8}>
-            <Search
-              onChange={this.handleChange}
-              search={search}
-            />
-          </Grid>
-        </Grid>
-      </div>
+      <React.Fragment>
+        <Title />
+        <Search
+          search={search}
+          onSearch={this.handleSearch}
+          onChange={this.handleChange}
+        />
+      </React.Fragment>
     );
   }
 }

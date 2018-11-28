@@ -20,3 +20,6 @@ React + GraphQL
   - Apollo Client - `npm install apollo-boost react-apollo graphql`
   - Dotenv - `npm install dotenv`
   
+## Material de apoio
+
+- [GraphQL College](https://www.graphql.college/implementing-github-oauth-flow/)

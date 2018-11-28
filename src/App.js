@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import Router from "./Router";
+// Components
+import Template from "./components/Template";
 
 class App extends Component {
   render() {
-    return <Router />;
+    return (
+      <Template>
+        <Router />
+      </Template>
+    );
   }
 }
 

@@ -1,16 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+// GraphQL
 import { ApolloProvider } from "react-apollo";
 import ApolloClient from "apollo-boost";
-
+// root
 import App from "./App";
+import "./index.css"
 
 require('dotenv').config();
 
 const client = new ApolloClient({
   headers: {
-    authorization: `Bearer ${process.env.REACT_APP_PERSONAL_ACCESS_TOKEN}`
+    authorization: `Bearer ${localStorage.getItem("token")}`
   },
   uri: "https://api.github.com/graphql"
 });
