@@ -1,13 +1,22 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+// GraphQL
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
+// MaterialUI
+import { withStyles } from "@material-ui/core/styles";
+import Loading from "../components/Loading";
+
+const styles = theme => ({
+});
 
 class ResultPage extends Component {
   render() {
     const {
       match: {
         params: { search }
-      }
+      },
+      classes
     } = this.props;
     return (
       <Fragment>
@@ -35,7 +44,10 @@ class ResultPage extends Component {
           `}
         >
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
+            if (loading)
+              return (
+               <Loading/>
+              );
             if (error) return <p>Error :(</p>;
 
             return (
@@ -54,4 +66,7 @@ class ResultPage extends Component {
   }
 }
 
-export default ResultPage;
+ResultPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+export default withStyles(styles)(ResultPage);

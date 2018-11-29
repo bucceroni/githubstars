@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+// Routes
 import Router from "./Router";
 // Components
 import Template from "./components/Template";

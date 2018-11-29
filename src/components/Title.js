@@ -17,10 +17,12 @@ const styles = theme => ({
 
 const Title = props => (
   <React.Fragment>
+    <div>
       <span className={props.classes.title}>
         Github
         <span className={props.classes.titleColor}>Stars</span>
       </span>
+    </div>
   </React.Fragment>
 );
 

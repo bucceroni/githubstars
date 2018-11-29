@@ -18,8 +18,16 @@ React + GraphQL
   - Material Icon - `npm install @material-ui/icons`
   - React Router - `npm install react-router-dom` 
   - Apollo Client - `npm install apollo-boost react-apollo graphql`
+  - Apollo Link Context - `npm i apollo-link-context`
   - Dotenv - `npm install dotenv`
+
+## Deploy Heroku
+
+- Gatekeeper - https://gatekeeper-githubstars.herokuapp.com
+- App
   
 ## Material de apoio
 
 - [GraphQL College](https://www.graphql.college/implementing-github-oauth-flow/)
+- [Apollo Authentication](https://www.apollographql.com/docs/react/recipes/authentication.html)
+
