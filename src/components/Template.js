@@ -12,21 +12,16 @@ const styles = theme => ({
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing.unit * 2,
-    height: "80vh"
+    height: "85vh"
   }
 });
 
-class Template extends React.Component {
-  render() {
-    const { classes, children } = this.props;
-    return (
-      <React.Fragment>
-        <CssBaseline />
-        <div className={classes.root}>{children}</div>
-      </React.Fragment>
-    );
-  }
-}
+const Template = props => (
+  <React.Fragment>
+    <CssBaseline />
+    <div className={props.classes.root}>{props.children}</div>
+  </React.Fragment>
+);
 
 Template.propTypes = {
   classes: PropTypes.object.isRequired,

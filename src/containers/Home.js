@@ -10,10 +10,6 @@ class Home extends Component {
     status: "initial"
   };
 
-  // logout = () => {
-  //   localStorage.removeItem("token");
-  // };
-
   componentDidMount() {
     const code =
       window.location.href.match(/\?code=(.*)/) &&
