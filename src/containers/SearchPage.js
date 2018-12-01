@@ -8,6 +8,12 @@ class SearchPage extends Component {
     search: ""
   };
 
+  componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.props.history.push(`/`);
+    }
+  }
+
   handleChange = event => {
     this.setState({
       search: event.target.value

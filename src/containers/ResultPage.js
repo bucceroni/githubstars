@@ -16,6 +16,12 @@ const styles = theme => ({
 });
 
 class ResultPage extends Component {
+  componentDidMount() {
+    if (!localStorage.getItem("token")) {
+      this.props.history.push(`/`);
+    }
+  }
+
   render() {
     const {
       match: {
@@ -68,8 +74,8 @@ class ResultPage extends Component {
             return (
               <React.Fragment>
                 <PersonCard data={data} />
-                <BtnLogout/>
-                <BtnSearch/>
+                <BtnLogout />
+                <BtnSearch />
 
                 {/* {data.user.starredRepositories.nodes.map((value, index) => {
                   return <p key={index}>{`star: ${value.name}`}</p>;
