@@ -1,19 +1,16 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 // GraphQL
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 // MaterialUI
-import { withStyles } from "@material-ui/core/styles";
-import Loading from "../components/Loading";
+import { Grid } from "@material-ui/core";
 // Components
-import PersonCard from "../components/PersonCard/PersonCard";
+import Loading from "../components/Loading";
+import PersonInfo from "../components/PersonInfo/PersonInfo";
+import PersonStar from "../components/PersonStar/PersonStar";
 import BtnLogout from "../components/BtnLogout";
 import BtnSearch from "../components/BtnSearch";
-
-const styles = theme => ({
-  root: {}
-});
+import NotFound from "../components/NotFound";
 
 class ResultPage extends Component {
   componentDidMount() {
@@ -26,15 +23,16 @@ class ResultPage extends Component {
     const {
       match: {
         params: { search }
-      },
-      classes
+      }
     } = this.props;
+
     return (
       <React.Fragment>
         <Query
           query={gql`
             {
               viewer {
+                id
                 avatarUrl
                 name
                 login
@@ -43,9 +41,13 @@ class ResultPage extends Component {
                 location
                 email
                 url
-                starredRepositories(first: 5) {
+                starredRepositories(first: 15) {
                   nodes {
-                    name
+                    nameWithOwner
+                    description
+                    stargazers{
+                      totalCount
+                    }
                   }
                 }
               }
@@ -58,9 +60,14 @@ class ResultPage extends Component {
                 location
                 email
                 url
-                starredRepositories(first: 5) {
+                starredRepositories(first: 15) {
                   nodes {
-                    name
+                    id
+                    nameWithOwner
+                    description
+                    stargazers{
+                      totalCount
+                    }
                   }
                 }
               }
@@ -69,17 +76,36 @@ class ResultPage extends Component {
         >
           {({ loading, error, data }) => {
             if (loading) return <Loading />;
-            if (error) return <p>Error :(</p>;
+            if (error) return <NotFound />;
 
             return (
               <React.Fragment>
-                <PersonCard data={data} />
-                <BtnLogout />
-                <BtnSearch />
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  wrap="nowrap"
+                >
+                  <Grid item>
+                    <PersonInfo data={data} />
+                  </Grid>
 
-                {/* {data.user.starredRepositories.nodes.map((value, index) => {
-                  return <p key={index}>{`star: ${value.name}`}</p>;
-                })} */}
+                  <Grid item>
+                    <PersonStar data={data} />
+                  </Grid>
+                </Grid>
+                <br />
+                <Grid
+                  container
+                  direction="row"
+                  justify="center"
+                  alignItems="center"
+                  wrap="nowrap"
+                >
+                  <BtnLogout />
+                  <BtnSearch />
+                </Grid>
               </React.Fragment>
             );
           }}
@@ -89,7 +115,4 @@ class ResultPage extends Component {
   }
 }
 
-ResultPage.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-export default withStyles(styles)(ResultPage);
+export default ResultPage;

@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 // MaterialUI
 import { withStyles } from "@material-ui/core/styles";
-import { Paper } from "@material-ui/core";
+import { Paper, Grid, Avatar } from "@material-ui/core";
 // Components
 import IconInfo from "./IconInfo";
 import BioInfo from "./BioInfo";
-import PersonInfo from "./PersonInfo";
 
 const styles = theme => ({
   root: {
@@ -15,6 +14,23 @@ const styles = theme => ({
     paddingBottom: theme.spacing.unit * 2,
     width: 300,
     backgroundColor: "#5f3081"
+  },
+  avatar: {
+    margin: 10,
+    width: 200,
+    height: 200
+  },
+  name: {
+    fontFamily: "Roboto",
+    fontSize: "24px",
+    color: "#ffffff",
+    fontWeight: 600
+  },
+  nickname: {
+    fontFamily: "Roboto",
+    fontSize: "18px",
+    color: "#ffffff",
+    fontWeight: 400
   }
 });
 
@@ -24,7 +40,33 @@ class PersonCard extends Component {
     return (
       <React.Fragment>
         <Paper className={classes.root} elevation={3}>
-          <PersonInfo data={data} />
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+            wrap="nowrap"
+          >
+            <Grid item xs>
+              <Avatar
+                alt="AvatarUrl"
+                src={data.user.avatarUrl}
+                className={classes.avatar}
+              />
+            </Grid>
+
+            <Grid item xs>
+              <div className={classes.name}>
+                <span>{data.user.name}</span>
+              </div>
+            </Grid>
+
+            <Grid item xs>
+              <div className={classes.nickname}>
+                <span>{data.user.login}</span>
+              </div>
+            </Grid>
+          </Grid>
           <hr style={{ color: "#ffffff", margin: "20px" }} />
           <BioInfo info={data.user.bio} />
           <IconInfo icon={"company"} info={data.user.company} />
