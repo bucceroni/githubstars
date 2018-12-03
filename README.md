@@ -24,7 +24,7 @@ React + GraphQL
 ## Deploy Heroku
 
 - Gatekeeper - https://gatekeeper-githubstars.herokuapp.com
-- App
+- App - https://app-githubstars.herokuapp.com/
   
 ## Material de apoio
 
