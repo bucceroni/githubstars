@@ -33,7 +33,7 @@ const Login = props => (
       <IconButton
         href={`https://github.com/login/oauth/authorize?client_id=${
           process.env.REACT_APP_CLIENT_ID
-        }&scope=user%public_repo%gist&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`}
+        }&scope=user,public_repo,gist&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`}
       >
         <img className={props.classes.logo} src={LoginGitHub} alt={"Login"} />
       </IconButton>
