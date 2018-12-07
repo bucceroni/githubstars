@@ -12,7 +12,7 @@ const styles = theme => ({
     justifyContent: "center",
     alignItems: "center",
     padding: theme.spacing.unit * 2,
-    height: "85vh"
+    height: "100vh"
   }
 });
 

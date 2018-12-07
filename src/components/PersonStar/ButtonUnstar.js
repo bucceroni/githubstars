@@ -8,26 +8,29 @@ import { withStyles } from "@material-ui/core/styles";
 import { Button } from "@material-ui/core";
 // Components
 import Loading from "../Loading";
-import ButtonUnstar from "./ButtonUnstar";
+import ButtonStar from "./ButtonStar";
 // MaterialUI
 
 const styles = theme => ({
   cssRoot: {
-    color: "#5f3081",
-    borderColor: "#5f3081",
+    color: "#ffffff",
+    backgroundColor: "#5f3081",
     "&:hover": {
-      color: "#ffffff",
-      backgroundColor: "#5f3081"
+      color: "#5f3081",
+      borderColor: "#5f3081"
     }
   }
 });
 
-const ButtonStar = props => (
+const ButtonUnstar = props => (
   <React.Fragment>
     <Mutation
       mutation={gql`
-        mutation AddStarViewer($clientMutationId: String!, $starrableId: ID!) {
-          addStar(
+        mutation RemoveStarViewer(
+          $clientMutationId: String!
+          $starrableId: ID!
+        ) {
+          removeStar(
             input: {
               clientMutationId: $clientMutationId
               starrableId: $starrableId
@@ -38,11 +41,11 @@ const ButtonStar = props => (
         }
       `}
     >
-      {(addStar, { loading, error, data }) => {
+      {(removeStar, { loading, error, data }) => {
         if (error) return <span>{error.message}</span>;
         if (data)
           return (
-            <ButtonUnstar
+            <ButtonStar
               idClientMutation={props.idClientMutation}
               idStarrable={props.idStarrable}
             />
@@ -54,7 +57,7 @@ const ButtonStar = props => (
               variant="outlined"
               className={props.classes.cssRoot}
               onClick={() => {
-                addStar({
+                removeStar({
                   variables: {
                     clientMutationId: props.idClientMutation,
                     starrableId: props.idStarrable
@@ -62,7 +65,7 @@ const ButtonStar = props => (
                 });
               }}
             >
-              {loading ? <Loading size={20} white={true} /> : "Star"}
+              {loading ? <Loading size={20} /> : "Unstar"}
             </Button>
           </div>
         );
@@ -71,10 +74,10 @@ const ButtonStar = props => (
   </React.Fragment>
 );
 
-ButtonStar.propTypes = {
+ButtonUnstar.propTypes = {
   classes: PropTypes.object.isRequired,
   idClientMutation: PropTypes.string.isRequired,
   idStarrable: PropTypes.string.isRequired
 };
 
-export default withStyles(styles)(ButtonStar);
+export default withStyles(styles)(ButtonUnstar);

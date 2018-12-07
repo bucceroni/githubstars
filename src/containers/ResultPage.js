@@ -41,8 +41,9 @@ class ResultPage extends Component {
                 location
                 email
                 url
-                starredRepositories(first: 15) {
+                starredRepositories(first: 100) {
                   nodes {
+                    id
                     nameWithOwner
                     description
                     stargazers{
@@ -60,7 +61,7 @@ class ResultPage extends Component {
                 location
                 email
                 url
-                starredRepositories(first: 15) {
+                starredRepositories(first: 100) {
                   nodes {
                     id
                     nameWithOwner

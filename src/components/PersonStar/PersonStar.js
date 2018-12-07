@@ -6,6 +6,7 @@ import { Paper, List, ListItem, Grid } from "@material-ui/core";
 import StarBorder from "@material-ui/icons/StarBorder";
 // Components
 import ButtonStar from "./ButtonStar";
+import NotFoundDiff from "../NotFoundDiff";
 
 const styles = theme => ({
   root: {
@@ -17,7 +18,7 @@ const styles = theme => ({
   list: {
     position: "relative",
     overflow: "auto",
-    maxHeight: 600
+    height: 550
   },
   nameWithOwner: {
     fontFamily: "Roboto",
@@ -42,75 +43,80 @@ class PersonStar extends Component {
     let diff = data.user.starredRepositories.nodes.filter(
       user =>
         !data.viewer.starredRepositories.nodes
-          .map(viewer => viewer.nameWithOwner)
-          .includes(user.nameWithOwner)
+          .map(viewer => viewer.id)
+          .includes(user.id)
     );
+
 
     return (
       <React.Fragment>
         <Paper className={classes.root} elevation={3}>
           <List className={classes.list}>
-            {diff.map((item, index) => {
-              return (
-                <ListItem key={index}>
-                  <Paper className={classes.root} elevation={3}>
-                    <Grid
-                      container
-                      direction="column"
-                      justify="center"
-                      alignItems="flex-start"
-                      wrap="nowrap"
-                    >
-                      <div>
-                        <span className={classes.nameWithOwner} key={index}>
-                          {item.nameWithOwner}
-                        </span>
-                      </div>
-                    </Grid>
-                    <Grid
-                      container
-                      direction="row"
-                      justify="space-between"
-                      alignItems="center"
-                      wrap="nowrap"
-                    >
-                      <Grid item xs={10}>
+            {diff.length > 0 ? (
+              diff.map((item, index) => {
+                return (
+                  <ListItem key={index}>
+                    <Paper className={classes.root} elevation={3}>
+                      <Grid
+                        container
+                        direction="column"
+                        justify="center"
+                        alignItems="flex-start"
+                        wrap="nowrap"
+                      >
                         <div>
-                          <span className={classes.description} key={index}>
-                            {item.description}
+                          <span className={classes.nameWithOwner} key={index}>
+                            {item.nameWithOwner}
                           </span>
                         </div>
                       </Grid>
-                      <Grid item>
-                        <ButtonStar
-                          idClientMutation={data.viewer.id}
-                          idStarrable={item.id}
-                        />
+                      <Grid
+                        container
+                        direction="row"
+                        justify="space-between"
+                        alignItems="center"
+                        wrap="nowrap"
+                      >
+                        <Grid item xs={10}>
+                          <div>
+                            <span className={classes.description} key={index}>
+                              {item.description}
+                            </span>
+                          </div>
+                        </Grid>
+                        <Grid item>
+                          <ButtonStar
+                            idClientMutation={data.viewer.id}
+                            idStarrable={item.id}
+                          />
+                        </Grid>
                       </Grid>
-                    </Grid>
 
-                    <Grid
-                      container
-                      direction="row"
-                      justify="flex-start"
-                      alignItems="center"
-                      wrap="nowrap"
-                    >
-                      <Grid item>
-                        <StarBorder className={classes.icon} />
+                      <Grid
+                        container
+                        direction="row"
+                        justify="flex-start"
+                        alignItems="center"
+                        wrap="nowrap"
+                      >
+                        <Grid item>
+                          <StarBorder className={classes.icon} />
+                        </Grid>
+                        <Grid item>
+                          <div>
+                            <span className={classes.description} key={index}>
+                              {item.stargazers.totalCount}
+                            </span>
+                          </div>
+                        </Grid>
                       </Grid>
-                      <Grid item>
-                        <div>
-                          <span className={classes.description} key={index}>
-                            {item.stargazers.totalCount}
-                          </span>
-                        </div>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </ListItem>
-              );
-            })}
+                    </Paper>
+                  </ListItem>
+                );
+              })
+            ) : (
+              <NotFoundDiff />
+            )}
           </List>
         </Paper>
       </React.Fragment>
