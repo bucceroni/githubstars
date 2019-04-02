@@ -24,15 +24,14 @@ O que não tem no Github, com menos do que 2 cliques, é saber quais são todos 
     - Dotenv - `npm install dotenv`
     
  - Back
-  - [API - GitHub v4](https://developer.github.com/v4/)
-  - Gatekeeper - (https://gatekeeper-githubstars.herokuapp.com)
+    - [API - GitHub v4](https://developer.github.com/v4/)
+    - Gatekeeper - https://gatekeeper-githubstars.herokuapp.com
 
 <hr>
 
 ## Deploy
 - Heroku
-  - Aplicação disponível em:
-  - [https://app-githubstars.herokuapp.com/](https://app-githubstars.herokuapp.com/)
+  - Aplicação disponível em: [https://app-githubstars.herokuapp.com/](https://app-githubstars.herokuapp.com/)
 
 <hr>
 
